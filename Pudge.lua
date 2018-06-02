@@ -6,14 +6,15 @@ local YY = Menu.AddOptionSlider({ "Hero Specific", "Pudge" }, "Coordinate Y", 10
 function Pudge.OnUpdate()
 local X = Menu.GetValue(XX)
 local Y = Menu.GetValue(YY)
+local myHero = Heroes.GetLocal()
+  if NPC.GetUnitName(myHero) ~= "npc_dota_hero_pudge" then return end
   if not Menu.IsEnabled(Pudge.optionEnable) or not Engine.IsInGame() or not Heroes.GetLocal() then 
 Renderer.SetDrawColor(255, 0, 0, 100)
 Renderer.DrawText(Font, X, Y, "[Denay:OFF]")
 else 
 Renderer.SetDrawColor(100, 255, 100, 100)
 Renderer.DrawText(Font, X, Y, "[Denay:ON]")
-local myHero = Heroes.GetLocal()
-  if NPC.GetUnitName(myHero) ~= "npc_dota_hero_pudge" then return end
+
     Pudge.Denay(myHero, enemy) end
   function Pudge.Denay(myHero, enemy)
 local myMana = NPC.GetMana(myHero)
